@@ -1,0 +1,30 @@
+def fsa(string):
+    state = "q0"
+    path = [state]
+    for ch in string:
+        if ch not in "ab":
+            print("Invalid input! Use only a and b.")
+            return
+        if state == "q0":
+            if ch == "a":
+                state = "q1"
+            else:
+                state = "q0"
+        elif state == "q1":
+            if ch == "a":
+                state = "q1"
+            else:
+                state = "q2"
+        elif state == "q2":
+            if ch == "a":
+                state = "q1"
+            else:
+                state = "q0"
+        path.append(state)
+    print("State Path:", " -> ".join(path))
+    if state == "q2":
+        print("ACCEPTED")
+    else:
+        print("REJECTED")
+string = input("Enter a string over {a,b}: ")
+fsa(string)
