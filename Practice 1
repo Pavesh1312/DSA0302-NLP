@@ -1,0 +1,18 @@
+import re
+from collections import Counter
+paragraph = input("Enter a small paragraph: ")
+sentences = re.split(r'[.!?]+', paragraph)
+sentences = [s.strip() for s in sentences if s.strip()]
+print("\nSentences:")
+for s in sentences:
+    print(s)
+words = re.findall(r'\b\w+\b', paragraph.lower())
+print("\nWords:")
+print(words)
+word_count = Counter(words)
+print("\nWord Count:")
+for word, count in word_count.items():
+    print(word, ":", count)
+most_frequent = word_count.most_common(1)
+print("\nMost Frequent Word:")
+print(most_frequent[0][0], "->", most_frequent[0][1], "times")
