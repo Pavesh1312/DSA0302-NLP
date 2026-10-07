@@ -1,0 +1,30 @@
+import re
+strings = [
+    "cat",
+    "cats",
+    "ct",
+    "caaat",
+    "dog",
+    "hello",
+    "Hello",
+    "12345",
+    "abc123"
+]
+patterns = {
+    "?  (zero or one)": r"cats?",
+    "*  (zero or more)": r"ca*t",
+    "+  (one or more)": r"ca+t",
+    "[ ] (character set)": r"[aeiou]",
+    ".  (any character)": r"c.t",
+    "[^] (not in set)": r"[^aeiou]",
+    "^  (starts with)": r"^cat",
+    "$  (ends with)": r"cat$"
+}
+for name, pattern in patterns.items():
+    print("\nPattern:", name)
+    print("Regex:", pattern)
+    for text in strings:
+        if re.search(pattern, text):
+            print(text, "-> YES")
+        else:
+            print(text, "-> NO")
