@@ -1,0 +1,33 @@
+import re
+text = input("Enter the text: ")
+date_pattern = r'\b\d{2}[-/]\d{2}[-/]\d{4}\b'
+first_date = re.search(date_pattern, text)
+if first_date:
+    print("\nFirst date:", first_date.group())
+else:
+    print("\nNo date found")
+mobile_pattern = r'\b(?:\+91[-\s]?)?[6-9]\d{9}\b'
+mobile_numbers = re.findall(mobile_pattern, text)
+print("\nMobile numbers:")
+print(mobile_numbers)
+email_pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
+emails = re.findall(email_pattern, text)
+print("\nE-mail IDs:")
+print(emails)
+capital_pattern = r'\b[A-Z][a-zA-Z]*\b'
+capital_words = re.findall(capital_pattern, text)
+print("\nCapitalised words:")
+print(capital_words)
+if re.match(r'(?i)^call\b', text):
+    print('\nThe text starts with "call"')
+else:
+    print('\nThe text does not start with "call"')
+def change_date(match):
+    day, month, year = match.group().replace('/', '-').split('-')
+    return year + "/" + month + "/" + day
+changed_text = re.sub(date_pattern, change_date, text)
+print("\nText after changing date format:")
+print(changed_text)
+hidden_text = re.sub(mobile_pattern, "XXXXXXXXXX", text)
+print("\nText after hiding phone numbers:")
+print(hidden_text)
